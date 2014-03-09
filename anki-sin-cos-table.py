@@ -1,16 +1,24 @@
-#!/usr/bin/env python2.7
-from sympy import Symbol, latex, simplify
+#!/usr/bin/env python3
+from functools import reduce
+
+from sympy import latex, simplify
 from sympy import pi, sin, cos, tan
 
-def ankilatex(e):
-  """ Format sympy expression as Anki LaTeX"""
-  return "[$$]" + latex(e) + "[/$$]"
 
-for i in range(-16, 16):
-  x = simplify(i*pi/4)
+def anki_latex(e):
+    """Format SymPy expression as Anki LaTeX"""
+    return "[$$]" + latex(e) + "[/$$]"
 
-  for f in [sin, cos, tan]:
-    print "What is " + ankilatex(f(x, evaluate=False)) + "?",
-    print ";",
-    print ankilatex(f(x)),
-    print
+
+def as_csv(*values):
+    return reduce(lambda a, b: a + ";" + b, values)
+
+
+xs = map(simplify,
+         [i * pi / 4 for i in range(-16, 16)])
+
+for x in xs:
+    for f in [sin, cos, tan]:
+        front = "What is " + anki_latex(f(x, evaluate=False)) + "?"
+        back = anki_latex(f(x))
+        print(as_csv(front, back))
