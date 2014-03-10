@@ -20,7 +20,8 @@ def deduplicate(iterable):
 
 
 xs = sorted(deduplicate(map(simplify,
-                            [i * pi / 4 for i in range(-16, 16)] + [i * pi / 6 for i in range(-24, 24)])))
+                            [i * pi / 4 for i in range(-16, 16)]
+                            + [i * pi / 6 for i in range(-24, 24)])))
 
 for x in xs:
     for f in [sin, cos, tan]:
