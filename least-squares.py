@@ -16,9 +16,7 @@ yn = [6, 5, 7, 10, 11, 12, 14]
 #
 # For each data point the vertical error/residual is x*b1 + b2 - y. We want to
 # minimize the sum of the squared residuals (least squares).
-S = Symbol('0')
-for i in range(0, len(xn)):
-    S += (xn[i] * b1 + b2 - yn[i]) ** 2
+S = sum((xn[i] * b1 + b2 - yn[i]) ** 2 for i in range(0, len(xn)))
 print(S)
 
 # Minimize S by setting its partial derivatives to zero.
