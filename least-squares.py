@@ -17,17 +17,18 @@ yn = [6, 5, 7, 10, 11, 12, 14]
 # For each data point the vertical error/residual is x*b1 + b2 - y. We want to
 # minimize the sum of the squared residuals (least squares).
 S = sum((xn[i] * b1 + b2 - yn[i]) ** 2 for i in range(0, len(xn)))
-print(S)
+print("Function to minimize: S = {}".format(S))
 
 # Minimize S by setting its partial derivatives to zero.
 d1 = diff(S, b1)
 d2 = diff(S, b2)
 solutions = solve([d1, d2], [b1, b2])
+print("S is minimal for b1 = {}, b2 = {}".format(solutions[b1], solutions[b2]))
 
 # Construct fitted line from the solutions
 x = Symbol('x')
 fitted_line = solutions[b1] * x + solutions[b2]
-print(fitted_line)
+print("Fitted line: y = {}".format(fitted_line))
 
 # Construct something we can plot with matplotlib
 fitted_line_func = lambdify(x, fitted_line, modules=['numpy'])
