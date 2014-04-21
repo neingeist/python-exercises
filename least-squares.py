@@ -9,14 +9,13 @@ b1 = Symbol('b1')
 b2 = Symbol('b2')
 
 # Data points
-xn = [1, 2, 3, 4, 5, 7, 9]
-yn = [6, 5, 7, 10, 11, 12, 14]
+data = [(1,14), (2, 13), (3, 12), (4, 10), (5,9), (7,8), (9,5)]
 
 # S is the function to minimize:
 #
 # For each data point the vertical error/residual is x*b1 + b2 - y. We want to
 # minimize the sum of the squared residuals (least squares).
-S = sum((xn[i] * b1 + b2 - yn[i]) ** 2 for i in range(0, len(xn)))
+S = sum((p[0] * b1 + b2 - p[1]) ** 2 for p in data)
 print("Function to minimize: S = {}".format(S))
 
 # Minimize S by setting its partial derivatives to zero.
@@ -32,9 +31,10 @@ print("Fitted line: y = {}".format(fitted_line))
 
 # Construct something we can plot with matplotlib
 fitted_line_func = lambdify(x, fitted_line, modules=['numpy'])
-x_plot = np.linspace(min(xn), max(xn), 100)
+x_plot = np.linspace(min(p[0] for p in data),
+                     max(p[0] for p in data), 100)
 
 # Plot data points and fitted line
-plt.scatter(xn, yn, marker="+")
+plt.scatter([p[0] for p in data], [p[1] for p in data], marker="+")
 plt.plot(x_plot, fitted_line_func(x_plot), 'r')
 plt.show()
