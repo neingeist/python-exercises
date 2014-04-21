@@ -1,6 +1,6 @@
 #!/usr/bin/python2.7
 from __future__ import division, print_function
-from sympy import Symbol, diff, solve, lambdify
+from sympy import Symbol, diff, solve, lambdify, simplify
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -16,6 +16,7 @@ data = [(1,14), (2, 13), (3, 12), (4, 10), (5,9), (7,8), (9,5)]
 # For each data point the vertical error/residual is x*b1 + b2 - y. We want to
 # minimize the sum of the squared residuals (least squares).
 S = sum((p[0] * b1 + b2 - p[1]) ** 2 for p in data)
+S = simplify(S)
 print("Function to minimize: S = {}".format(S))
 
 # Minimize S by setting its partial derivatives to zero.
