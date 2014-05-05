@@ -1,0 +1,5 @@
+*.pyc
+*.o
+*.so
+test_swig.py
+test_swig_wrap.c
