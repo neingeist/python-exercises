@@ -2,7 +2,7 @@
 default: all test
 
 .PHONY: all
-all: _test_swig.so
+all: _test_swig.so _test_swig_opencv.so
 
 .PHONY: test
 test:
@@ -16,6 +16,11 @@ test_swig.o: test_swig_wrap.c
 
 test_swig_wrap.c: test_swig.i
 	swig -python $<
+
+_test_swig_opencv.so: test_swig_opencv.cpp test_swig_opencv.i okapi-typemaps.i numpy.i
+	swig -python -c++ test_swig_opencv.i
+	g++ -fpic -c test_swig_opencv.cpp test_swig_opencv_wrap.cxx -I/usr/include/python2.7
+	g++ -shared test_swig_opencv.o test_swig_opencv_wrap.o -lopencv_core -o _test_swig_opencv.so
 
 .PHONY: clean
 clean:
