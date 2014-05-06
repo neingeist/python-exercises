@@ -5,3 +5,4 @@ test_swig.py
 test_swig_wrap.c
 test_swig_opencv.py
 test_swig_opencv_wrap.cxx
+anki-sin-cos-table.txt
