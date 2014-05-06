@@ -24,4 +24,4 @@ _test_swig_opencv.so: test_swig_opencv.cpp test_swig_opencv.i okapi-typemaps.i n
 
 .PHONY: clean
 clean:
-	rm -f *.o *.so test_swig_wrap.c *.pyc test_swig.py
+	rm -f *.o *.so test_swig_wrap.c test_swig_opencv_wrap.cxx *.pyc test_swig.py test_swig_opencv.py
