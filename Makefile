@@ -8,6 +8,11 @@ all: _test_swig.so _test_swig_opencv.so
 test:
 	python2.7 test_swig_test.py
 
+.PHONY: pep8
+pep8:
+	find . -name "*.py" -not -name test_swig.py -not -name test_swig_opencv.py \
+	| xargs pep8
+
 _test_swig.so: test_swig.o
 	ld -shared test_swig.o test_swig_wrap.o -o _test_swig.so
 
