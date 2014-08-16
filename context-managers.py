@@ -9,6 +9,7 @@ from tempfile import mkdtemp
 import os
 import shutil
 
+
 @contextmanager
 def working_directory(path):
     current_dir = os.getcwd()
@@ -28,8 +29,6 @@ def just_a_test():
         print "finally!"
 
 
-
-
 @contextmanager
 def temporary_dir(*args, **kwds):
     name = mkdtemp(*args, **kwds)
@@ -37,7 +36,6 @@ def temporary_dir(*args, **kwds):
         yield name
     finally:
         shutil.rmtree(name)
-
 
 
 with working_directory("/tmp"), just_a_test():

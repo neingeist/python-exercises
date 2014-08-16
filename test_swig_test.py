@@ -2,8 +2,8 @@ from __future__ import division, print_function
 import test_swig
 
 # FIXME
-#print(test_swig.My_variable)
-#assert(test_swig.My_variable == 3.0)
+# print(test_swig.My_variable)
+# assert(test_swig.My_variable == 3.0)
 
 print(test_swig.fact(5))
 assert(test_swig.fact(5) == 120)

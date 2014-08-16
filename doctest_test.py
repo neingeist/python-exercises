@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+
 def foo(n):
     """Returns n times foo, and a period.
 
@@ -20,6 +21,7 @@ def foo(n):
         return "foo " * (n-1) + "foo."
     else:
         return ""
+
 
 def _test():
     import doctest

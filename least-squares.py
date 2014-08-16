@@ -9,7 +9,7 @@ b1 = Symbol('b1')
 b2 = Symbol('b2')
 
 # Data points
-data = [(1,14), (2, 13), (3, 12), (4, 10), (5,9), (7,8), (9,5)]
+data = [(1, 14), (2, 13), (3, 12), (4, 10), (5, 9), (7, 8), (9, 5)]
 
 # S is the function to minimize:
 #
