@@ -19,8 +19,8 @@ def typechecked(func):
         return_ = wrapped_func(*args, **kvargs)
         class_ = wrapped_func.__annotations__["return"]
         if not isinstance(return_, class_):
-                raise TypeError("return value is not "
-                                "an instance of {}".format(class_))
+            raise TypeError("return value is not "
+                            "an instance of {}".format(class_))
         return return_
 
     typecheck.__doc__ = wrapped_func.__doc__
