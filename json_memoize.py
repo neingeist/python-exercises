@@ -2,7 +2,13 @@ from __future__ import division, print_function
 
 from functools import update_wrapper, wraps
 import json
+import operator
 import os
+
+
+class HashableDict(dict):
+    def __hash__(self):
+        return hash(tuple(sorted(self.items())))
 
 
 def json_memoize(filename):
@@ -18,16 +24,16 @@ def json_memoize(filename):
                 with open(filename, "w") as f:
                     json.dump({}, f)
 
-        # XXX should work with **kwargs, too.
-        def __call__(self, *args):
+        def __call__(self, *args, **kwargs):
 
             with open(filename, "r") as f:
                 memo = json.load(f)
-            if repr(args) not in memo:
-                memo[repr(args)] = self.fn(*args)
+            json_key = repr((args, HashableDict(kwargs)))
+            if json_key not in memo:
+                memo[json_key] = self.fn(*args, **kwargs)
                 with open(filename, "w") as f:
                     json.dump(memo, f)
-            return memo[repr(args)]
+            return memo[json_key]
 
     return JsonMemoize
 
@@ -66,6 +72,17 @@ def is_prime(n):
     return True
 
 
+@json_memoize('json_memoize_tmp2.json')
+def multiply(*args):
+    return reduce(operator.mul, args, 1)
+
+
+@json_memoize('json_memoize_tmp3.json')
+def some_with_kwargs(one, two, **kwargs):
+    print([kwargs[k] for k in kwargs])
+    return one + two + reduce(operator.add, [kwargs[k] for k in kwargs], 0)
+
+
 assert (is_prime(0) is False)
 assert (is_prime(1) is False)
 assert (is_prime(2) is True)
@@ -76,3 +93,8 @@ for c in range(1, 11):
     time, result = is_prime_timed(86028157)
     assert (result is True)
     print("Call {}: {:.2f}s".format(c, time))
+
+assert(multiply(1, 2, 3, 4) == 24)
+assert(multiply(1, 2, 3, 4, 5) == 120)
+
+assert(some_with_kwargs(1, 2, three=3, four=4) == 10)
