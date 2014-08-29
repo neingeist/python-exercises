@@ -28,7 +28,7 @@ def json_memoize(filename):
 
             with open(filename, "r") as f:
                 memo = json.load(f)
-            json_key = repr((args, HashableDict(kwargs)))
+            json_key = repr((self.fn.__name__, args, HashableDict(kwargs)))
             if json_key not in memo:
                 memo[json_key] = self.fn(*args, **kwargs)
                 with open(filename, "w") as f:
@@ -72,12 +72,12 @@ def is_prime(n):
     return True
 
 
-@json_memoize('json_memoize_tmp2.json')
+@json_memoize('json_memoize_tmp.json')
 def multiply(*args):
     return reduce(operator.mul, args, 1)
 
 
-@json_memoize('json_memoize_tmp3.json')
+@json_memoize('json_memoize_tmp.json')
 def some_with_kwargs(one, two, **kwargs):
     return one + two + reduce(operator.add, [kwargs[k] for k in kwargs], 0)
 
