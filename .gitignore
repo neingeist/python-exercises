@@ -1,6 +1,7 @@
 *.pyc
 *.o
 *.so
+.idea/workspace.xml
 test_swig.py
 test_swig_wrap.c
 test_swig_opencv.py
