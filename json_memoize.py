@@ -79,7 +79,6 @@ def multiply(*args):
 
 @json_memoize('json_memoize_tmp3.json')
 def some_with_kwargs(one, two, **kwargs):
-    print([kwargs[k] for k in kwargs])
     return one + two + reduce(operator.add, [kwargs[k] for k in kwargs], 0)
 
 
