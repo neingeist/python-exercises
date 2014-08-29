@@ -32,7 +32,11 @@ def json_memoize(filename):
             if json_key not in memo:
                 memo[json_key] = self.fn(*args, **kwargs)
                 with open(filename, "w") as f:
-                    json.dump(memo, f)
+                    json.dump(memo, f,
+                              indent=4,
+                              separators=(',', ': '),
+                              sort_keys=True)
+                    f.write("\n")
             return memo[json_key]
 
     return JsonMemoize
