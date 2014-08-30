@@ -7,6 +7,7 @@ import os
 
 
 class HashableDict(dict):
+
     def __hash__(self):
         return hash(tuple(sorted(self.items())))
 
@@ -25,7 +26,6 @@ def json_memoize(filename):
                     json.dump({}, f)
 
         def __call__(self, *args, **kwargs):
-
             with open(filename, "r") as f:
                 memo = json.load(f)
             json_key = repr((self.fn.__name__, args, HashableDict(kwargs)))
@@ -86,10 +86,10 @@ def some_with_kwargs(one, two, **kwargs):
     return one + two + reduce(operator.add, [kwargs[k] for k in kwargs], 0)
 
 
-assert (is_prime(0) is False)
-assert (is_prime(1) is False)
-assert (is_prime(2) is True)
-assert (is_prime(2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10) is False)
+assert(is_prime(0) is False)
+assert(is_prime(1) is False)
+assert(is_prime(2) is True)
+assert(is_prime(2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10) is False)
 
 is_prime_timed = timed(is_prime)
 for c in range(1, 11):
