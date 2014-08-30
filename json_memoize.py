@@ -13,7 +13,7 @@ class HashableDict(dict):
 
 
 def json_memoize(filename):
-    """Return a decorator that memoizes function calls in a JSON file."""
+    """A decorator that memoizes function calls in a JSON file."""
 
     class JsonMemoize:
 
@@ -78,11 +78,13 @@ def is_prime(n):
 
 @json_memoize('json_memoize_tmp.json')
 def multiply(*args):
+    """Multiply all args."""
     return reduce(operator.mul, args, 1)
 
 
 @json_memoize('json_memoize_tmp.json')
 def some_with_kwargs(one, two, **kwargs):
+    """Add 'one' and 'two' and all the values of the keyword arguments."""
     return one + two + reduce(operator.add, [kwargs[k] for k in kwargs], 0)
 
 
