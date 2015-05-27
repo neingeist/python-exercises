@@ -44,7 +44,7 @@ def print_puzzle(clear=True):
             if element != 0:
                 print(element, end=' ')
             else:
-                print('_', end=' ')
+                print('‧', end=' ')
         print()
 
 
