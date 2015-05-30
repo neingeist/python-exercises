@@ -32,11 +32,8 @@ def solve(n):
                     positions[row]-k != positions[row+k]
                     for row in range(0, n-1) for k in range(1, n-row)))
 
-    solutions = []
-    for positions in permutations(range(1, n+1)):
-        if valid(positions):
-            solutions.append(positions)
-    return solutions
+    return [positions for positions in permutations(range(1, n+1))
+            if valid(positions)]
 
 
 def fundamental(solutions):
