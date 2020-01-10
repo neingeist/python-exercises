@@ -7,5 +7,5 @@ test-swig/test_swig_wrap.c
 test-swig/test_swig_opencv.py
 test-swig/test_swig_opencv_wrap.cxx
 anki-sin-cos/anki-sin-cos-table.txt
-json_memoize*.json
+json-memoize/json_memoize*.json
 *.log
