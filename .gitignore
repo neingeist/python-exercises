@@ -2,10 +2,10 @@
 *.o
 *.so
 .idea/workspace.xml
-test_swig.py
-test_swig_wrap.c
-test_swig_opencv.py
-test_swig_opencv_wrap.cxx
+test-swig/test_swig.py
+test-swig/test_swig_wrap.c
+test-swig/test_swig_opencv.py
+test-swig/test_swig_opencv_wrap.cxx
 anki-sin-cos/anki-sin-cos-table.txt
 json_memoize*.json
 *.log
